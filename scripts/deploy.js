@@ -1,8 +1,11 @@
 const { ethers } = require("hardhat");
 
 async function main() {
+  const [owner] = await ethers.getSigners();
   const transactionCount = await owner.getTransactionCount();
 
+  //console.log(owner.address)
+  
   // gets the address of the token before it is deployed
   const futureAddress = ethers.utils.getContractAddress({
     from: owner.address,
@@ -19,6 +22,7 @@ async function main() {
     `Governor deployed to ${governor.address}`,
     `Token deployed to ${token.address}`
   );
+
 }
 
 main().catch((error) => {
